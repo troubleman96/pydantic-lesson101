@@ -40,7 +40,7 @@ Git for cloning the repository.
 Installation
 
 Clone the Repository:
-[git clone https://github.com/your-username/pydantic-learning-project.git](https://github.com/troubleman96/pydantic-lesson101/tree/master)
+https://github.com/troubleman96/pydantic-lesson101.git
 cd pydantic-learning-project
 
 
