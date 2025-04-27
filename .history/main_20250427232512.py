@@ -1,0 +1,52 @@
+import json
+from pydantic import BaseModel, ValidationError, Field, SecretStr
+from pydantic_settings import BaseSettings
+from typing import List
+from enum import Enum
+
+
+class Gender(str, Enum):
+    Male="male"
+    Female="female"
+    NON_BINARY="Non-Binary"
+
+class Person(BaseModel):
+    username:str=Field(default=None,max_length=12)
+    email:str
+    age:int=Field(lt=30,gt=1)
+    friends:List[str]=[]
+    gender:Gender
+
+
+
+data = {
+    "username":"testuser",
+    "email":"user@gmail.com",
+    "age":"22",
+    "friends":["friend01"],
+    "gender":Gender.Male
+
+}
+
+# try:
+#     new_person = Person(**data)    
+
+#     schema = new_person.model_json_schema()
+
+#     print(json.dumps(schema,indent=4))
+
+# except ValidationError as e:
+#     print(e)
+
+class Settings(BaseSettings):
+    api_key:str
+    db_pass:Secrec
+
+    class Config:
+        env_file=".env"
+        env_encoding="utf-8"
+
+
+my_settings=Settings()
+
+print(my_settings)
